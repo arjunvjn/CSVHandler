@@ -37,6 +37,8 @@ const FileDetailPage = () => {
     const [fromEmail, setFromEmail] = useState('');
     const [toEmail, setToEmail] = useState('');
 
+    const [deleteRecord, setDeleteRecord] = useState(false);
+
     const [dateFilter, setDateFilter] = useState('');
     const [restaurantNameFilter, setRestaurantNameFilter] = useState('');
 
@@ -72,7 +74,7 @@ const FileDetailPage = () => {
                     setLoading(false);
                 });
         }
-    }, [id]);
+    }, [id, deleteRecord]);
 
     const handleChangePage = (event, newPage) => {
         console.log(newPage)
@@ -109,7 +111,7 @@ const FileDetailPage = () => {
             .then((response) => {
                 console.log(response)
                 if (response.data.status === 'Success')
-                    window.location.reload()
+                    setDeleteRecord(!deleteRecord)
             }).catch((error) => console.log(error))
     }
 
